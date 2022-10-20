@@ -37,12 +37,14 @@ class CoinListViewModel @Inject constructor(
         getCoinsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
+                    _uiState.value = uiState.value.copy(isLoading = false)
                     _uiState.value = uiState.value.copy(coins = result.data ?: emptyList())
                 }
                 is Resource.Loading -> {
                     _uiState.value = uiState.value.copy(isLoading = true)
                 }
                 is Resource.Error -> {
+                    _uiState.value = uiState.value.copy(isLoading = false)
                     _uiState.value =
                         uiState.value.copy(error = result.message ?: UiText.unknownError())
                 }

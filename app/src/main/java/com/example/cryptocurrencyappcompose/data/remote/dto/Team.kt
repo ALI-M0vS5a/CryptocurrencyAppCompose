@@ -1,6 +1,6 @@
 package com.example.cryptocurrencyappcompose.data.remote.dto
 
-data class TeamMember(
+data class Team(
     val id: String,
     val name: String,
     val position: String
